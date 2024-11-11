@@ -4,9 +4,8 @@ metadata:
   labels:
     app.kubernetes.io/name: cargo-command
     app.kubernetes.io/managed-by: kustomize
-  name: metrics-reader
+  name: manager-role
 rules:
-- nonResourceURLs:
-  - "/metrics"
-  verbs:
-  - get
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
