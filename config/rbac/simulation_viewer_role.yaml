@@ -1,0 +1,23 @@
+# permissions for end users to view simulations.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: cargo-command
+    app.kubernetes.io/managed-by: kustomize
+  name: simulation-viewer-role
+rules:
+- apiGroups:
+  - simulation.cargo-command.com
+  resources:
+  - simulations
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - simulation.cargo-command.com
+  resources:
+  - simulations/status
+  verbs:
+  - get
