@@ -21,4 +21,6 @@ To create flux manifests:
 Then when the operator is running, create a CR:
 https://sdk.operatorframework.io/docs/building-operators/golang/tutorial/#create-a-memcached-cr
 
-apply it using kubectl apply and 
+Sample CRs is in `config/samples`
+
+apply it using kubectl apply

@@ -17,6 +17,8 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"time"
+
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -29,13 +31,16 @@ type SimulationSpec struct {
 	// Important: Run "make" to regenerate code after modifying this file
 
 	// Foo is an example field of Simulation. Edit simulation_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	StartTime time.Time     `json:"startTime,omitempty"`
+	EndTime   time.Time     `json:"endTime,omitempty"`
+	TimeStep  time.Duration `json:"timeStep,omitempty"`
 }
 
 // SimulationStatus defines the observed state of Simulation
 type SimulationStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	CurrentTime time.Time `json:"currentTime,omitempty"`
 }
 
 //+kubebuilder:object:root=true
