@@ -1,114 +1,43 @@
-# cargo-command
-// TODO(user): Add simple overview of use/purpose
+# Cargo Command
+Cargo Command allows you to take control of your own shipping line! Navigate the trials and tribulations of global politics, consumer demand and natural events and see if you can succeed as a shipping magnate.
 
-## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+## Game Sequence
+Once started the game will continue to run as a discrete event simulation. Each step in the simulation will represent a period of time in real life. For example, the simulation will step forward one hour of world time every minute in the simulation. So the simulation is continuous but not real-time.
 
-## Getting Started
+Built-in random events and player triggered events will change the course of the game.
 
-### Prerequisites
-- go version v1.21.0+
-- docker version 17.03+.
-- kubectl version v1.11.3+.
-- Access to a Kubernetes v1.11.3+ cluster.
+The aim of the game is to have the most money when the game finishes. Each game could be a fixed term, or continues until there is only one player left who is declared the winner. When the term is finished the player with the most money wins.
 
-### To Deploy on the cluster
-**Build and push your image to the location specified by `IMG`:**
+## Players
 
-```sh
-make docker-build docker-push IMG=<some-registry>/cargo-command:tag
-```
+Every player starts the game with $1bn. With that they can buy their first small vessel or maybe charter a few vessels to cater to more demand, but at a higher cost.
 
-**NOTE:** This image ought to be published in the personal registry you specified.
-And it is required to have access to pull the image from the working environment.
-Make sure you have the proper permission to the registry if the above commands don’t work.
+As the game proceeds players will be notified of what is happening and what opportunities are available to make money. They will act on those things by moving vessels, buying vessels, offering vessels to sell, changing routes, negotiating with other players etc.
 
-**Install the CRDs into the cluster:**
+## Vessels
+Vessels are categorised as small, medium and large.
 
-```sh
-make install
-```
+Size    Capacity    Price   Charter
+Small   4,000 TEU   $100m   $10k/day
+Medium  12,000 TEU  $250m   $25k/day
+Large   20,000 TEU  $500m   $50k/day
 
-**Deploy the Manager to the cluster with the image specified by `IMG`:**
+Players can buy vessels and charter vessels. When a player owns a vessel they can choose to use it for shipping or charter it to another player. As the game proceeds, players who once chartered may decide to buy their own vessel so just buying vessels and chartering them to others could be a risky strategy!
+The typical ROIC for a vessel is 3 years, but this could be extended if the vessel isn't actively chartered, or if damaged or being re-fitted.
 
-```sh
-make deploy IMG=<some-registry>/cargo-command:tag
-```
+## Ports
+Vessels will take products from port to port facilitating global trade and commerce.
 
-> **NOTE**: If you encounter RBAC errors, you may need to grant yourself cluster-admin
-privileges or be logged in as admin.
+## Events
+Various events can affect the course of the game:
 
-**Create instances of your solution**
-You can apply the samples (examples) from the config/sample:
-
-```sh
-kubectl apply -k config/samples/
-```
-
->**NOTE**: Ensure that the samples has default values to test it out.
-
-### To Uninstall
-**Delete the instances (CRs) from the cluster:**
-
-```sh
-kubectl delete -k config/samples/
-```
-
-**Delete the APIs(CRDs) from the cluster:**
-
-```sh
-make uninstall
-```
-
-**UnDeploy the controller from the cluster:**
-
-```sh
-make undeploy
-```
-
-## Project Distribution
-
-Following are the steps to build the installer and distribute this project to users.
-
-1. Build the installer for the image built and published in the registry:
-
-```sh
-make build-installer IMG=<some-registry>/cargo-command:tag
-```
-
-NOTE: The makefile target mentioned above generates an 'install.yaml'
-file in the dist directory. This file contains all the resources built
-with Kustomize, which are necessary to install this project without
-its dependencies.
-
-2. Using the installer
-
-Users can just run kubectl apply -f <URL for YAML BUNDLE> to install the project, i.e.:
-
-```sh
-kubectl apply -f https://raw.githubusercontent.com/<org>/cargo-command/<tag or branch>/dist/install.yaml
-```
-
-## Contributing
-// TODO(user): Add detailed information on how you would like others to contribute to this project
-
-**NOTE:** Run `make help` for more information on all potential `make` targets
-
-More information can be found via the [Kubebuilder Documentation](https://book.kubebuilder.io/introduction.html)
-
-## License
-
-Copyright 2024.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
+- conflict, delays shipping but increases prices
+- fuel changes, vessels need to be re-fit
+- accidents, damage and dry dock time will affect performance
+- cargo damage could reduce reputation and increase insurance cost
+- new trade routes, reduce shipping time and increase performance
+- pirates can seize vessel taking produce and causing damage/delays
+- port strike, could delay ships and increase costs
+- sudden demand, events like Christmas could cause spikes in demand
+- fuel price surge would affect price and customer satisfaction
+- storms, earthquakes, volcanoes could affect ports and vessels
