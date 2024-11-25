@@ -24,3 +24,18 @@ https://sdk.operatorframework.io/docs/building-operators/golang/tutorial/#create
 Sample CRs is in `config/samples`
 
 apply it using kubectl apply
+
+
+
+To check images in Kind cluster:
+`kubectl get nodes`
+Should yield something like:
+```
+NAME                 STATUS   ROLES           AGE   VERSION
+kind-control-plane   Ready    control-plane   26h   v1.31.2
+```
+
+Then execute:
+`podman exec -it kind-control-plane bash`
+`crictl images`
+

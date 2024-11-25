@@ -11,7 +11,7 @@ type VesselData struct {
 }
 
 type Vessel struct {
-	ID          string  `json:"SHIP_ID"`     // unique identifier
+	ID          int     `json:"SHIP_ID"`     // unique identifier
 	Type        string  `json:"TYPE"`        // type of the vessel
 	Name        string  `json:"SHIPNAME"`    // name of the vessel
 	Width       float64 `json:"WIDTH"`       // width of the vessel
@@ -29,7 +29,7 @@ type Vessel struct {
 
 var Vessels = []Vessel{
 	{
-		ID:          "IMO100000001",
+		ID:          1,
 		Name:        "Vessel 1",
 		Width:       10.0,
 		Latitude:    50.811400,
